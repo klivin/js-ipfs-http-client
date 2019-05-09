@@ -8,7 +8,7 @@ const through = require('through2')
 const v = require('is-ipfs')
 
 module.exports = (send) => {
-  return promisify((path, opts, callback) => {
+  return promisify((path, opts, callback, getRequest) => {
     if (typeof opts === 'function' && !callback) {
       callback = opts
       opts = {}
@@ -32,7 +32,7 @@ module.exports = (send) => {
     const request = { path: 'get', args: path, qs: opts }
 
     // Convert the response stream to TarStream objects
-    send.andTransform(request, TarStreamToObjects, (err, stream) => {
+    const r = send.andTransform(request, TarStreamToObjects, (err, stream) => {
       if (err) { return callback(err) }
 
       const files = []
@@ -48,5 +48,8 @@ module.exports = (send) => {
         next()
       }, () => callback(null, files)))
     })
+    if (getRequest) {
+      getRequest(r)
+    }
   })
 }
