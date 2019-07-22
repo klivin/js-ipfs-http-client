@@ -89,8 +89,8 @@ describe('interface-ipfs-core tests', () => {
       },
       // dht.findprovs
       {
-        name: 'should provide from one node and find it through another node',
-        reason: 'FIXME go-ipfs endpoint doesn\'t conform with the others https://github.com/ipfs/go-ipfs/issues/5047'
+        name: 'should take options to override timeout config',
+        reason: 'FIXME go-ipfs does not support a timeout option'
       },
       // dht.get
       {
@@ -173,6 +173,11 @@ describe('interface-ipfs-core tests', () => {
       isNode ? null : {
         name: 'should readable stream ls with a base58 encoded CID',
         reason: 'FIXME https://github.com/ipfs/js-ipfs-http-client/issues/339'
+      },
+      // .refs
+      {
+        name: 'dag refs test',
+        reason: 'FIXME unskip when 0.4.21 is released'
       }
     ]
   })
@@ -204,6 +209,12 @@ describe('interface-ipfs-core tests', () => {
     ]
   })
 
+  tests.name(CommonFactory.create({
+    spawnOptions: {
+      args: ['--offline']
+    }
+  }))
+
   // TODO: uncomment after https://github.com/ipfs/interface-ipfs-core/pull/361 being merged and a new release
   tests.namePubsub(CommonFactory.create({
     spawnOptions: {
@@ -229,7 +240,22 @@ describe('interface-ipfs-core tests', () => {
 
   tests.pin(defaultCommonFactory)
 
-  tests.ping(defaultCommonFactory)
+  tests.ping(defaultCommonFactory, {
+    skip: [
+      {
+        name: 'should fail when pinging an unknown peer over pull stream',
+        reason: 'FIXME go-ipfs return success with text: Looking up peer <cid>'
+      },
+      {
+        name: 'should fail when pinging peer that is not available over readable stream',
+        reason: 'FIXME go-ipfs return success with text: Looking up peer <cid>'
+      },
+      {
+        name: 'should fail when pinging a peer that is not available',
+        reason: 'FIXME go-ipfs return success with text: Looking up peer <cid>'
+      }
+    ]
+  })
 
   tests.pubsub(CommonFactory.create({
     spawnOptions: {
@@ -271,7 +297,7 @@ describe('interface-ipfs-core tests', () => {
               config = undefined
             }
 
-            const spawnOptions = { repoPath, config, initOptions: { bits: 1024 } }
+            const spawnOptions = { repoPath, config, initOptions: { bits: 1024, profile: 'test' } }
 
             ipfsFactory.spawn(spawnOptions, (err, _ipfsd) => {
               if (err) {

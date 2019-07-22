@@ -2,24 +2,23 @@
 
 const promisify = require('promisify-es6')
 const streamToValueWithTransformer = require('../utils/stream-to-value-with-transformer')
-const CID = require('cids')
+const moduleConfig = require('../utils/module-config')
 
-const transform = function (res, callback) {
-  callback(null, res.map(r => ({
-    err: r.Err ? new Error(r.Err) : null,
-    cid: (r.Key || {})['/'] ? new CID(r.Key['/']) : null
-  })))
-}
+module.exports = (arg) => {
+  const send = moduleConfig(arg)
 
-module.exports = (send) => {
   return promisify((opts, callback) => {
     if (typeof (opts) === 'function') {
       callback = opts
       opts = {}
     }
 
+    const transform = (res, cb) => {
+      cb(null, res.map(r => ({ ref: r.Ref, err: r.Err })))
+    }
+
     const request = {
-      path: 'repo/gc',
+      path: 'refs/local',
       qs: opts
     }
     send(request, (err, result) => {

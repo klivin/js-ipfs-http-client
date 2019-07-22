@@ -1,3 +1,148 @@
+<a name="33.1.0"></a>
+# [33.1.0](https://github.com/ipfs/js-ipfs-http-client/compare/v33.0.2...v33.1.0) (2019-07-11)
+
+
+### Bug Fixes
+
+* changelog for 33.x does not include breaking change ([cd41a16](https://github.com/ipfs/js-ipfs-http-client/commit/cd41a16))
+* invalid multipart/form-data ([#948](https://github.com/ipfs/js-ipfs-http-client/issues/948)) ([9e6dfe7](https://github.com/ipfs/js-ipfs-http-client/commit/9e6dfe7)), closes [/tools.ietf.org/html/rfc7578#section-4](https://github.com//tools.ietf.org/html/rfc7578/issues/section-4)
+
+
+### Features
+
+* add support for js-ipfs dag api and also some tests ([#957](https://github.com/ipfs/js-ipfs-http-client/issues/957)) ([8f378a3](https://github.com/ipfs/js-ipfs-http-client/commit/8f378a3))
+
+
+
+<a name="33.0.2"></a>
+## [33.0.2](https://github.com/ipfs/js-ipfs-http-client/compare/v33.0.1...v33.0.2) (2019-07-11)
+
+
+### Bug Fixes
+
+* make findprovs return all responses ([#1041](https://github.com/ipfs/js-ipfs-http-client/issues/1041)) ([63103bd](https://github.com/ipfs/js-ipfs-http-client/commit/63103bd))
+
+
+
+<a name="33.0.1"></a>
+## [33.0.1](https://github.com/ipfs/js-ipfs-http-client/compare/v33.0.0...v33.0.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* response for findpeer and findprovs ([#1039](https://github.com/ipfs/js-ipfs-http-client/issues/1039)) ([5252f50](https://github.com/ipfs/js-ipfs-http-client/commit/5252f50))
+
+
+
+<a name="33.0.0"></a>
+# [33.0.0](https://github.com/ipfs/js-ipfs-http-client/compare/v32.0.1...v33.0.0) (2019-07-10)
+
+
+### Bug Fixes
+
+* link to ipfs.io ([70cdf25](https://github.com/ipfs/js-ipfs-http-client/commit/70cdf25))
+* prepare for aegir release ([#1021](https://github.com/ipfs/js-ipfs-http-client/issues/1021)) ([806b206](https://github.com/ipfs/js-ipfs-http-client/commit/806b206))
+* sometimes no Addrs element is present in the response ([#1037](https://github.com/ipfs/js-ipfs-http-client/issues/1037)) ([a74b8f7](https://github.com/ipfs/js-ipfs-http-client/commit/a74b8f7))
+* **package:** update bignumber.js to version 9.0.0 ([#1024](https://github.com/ipfs/js-ipfs-http-client/issues/1024)) ([a04edac](https://github.com/ipfs/js-ipfs-http-client/commit/a04edac))
+
+### BREAKING CHANGES
+
+`repo.gc` response objects have changed to `{ err, cid }`, where `err` is an `Error` instance and `cid` is a [`CID`](https://github.com/multiformats/js-cid) instance.
+
+
+
+<a name="32.0.1"></a>
+## [32.0.1](https://github.com/ipfs/js-ipfs-http-client/compare/v32.0.0...v32.0.1) (2019-05-21)
+
+
+### Bug Fixes
+
+* error reporting for non-JSON responses ([#1016](https://github.com/ipfs/js-ipfs-http-client/issues/1016)) ([4251c88](https://github.com/ipfs/js-ipfs-http-client/commit/4251c88)), closes [#912](https://github.com/ipfs/js-ipfs-http-client/issues/912) [#1000](https://github.com/ipfs/js-ipfs-http-client/issues/1000) [#1001](https://github.com/ipfs/js-ipfs-http-client/issues/1001)
+* send trickle param to trigger trickle dag builder ([#1015](https://github.com/ipfs/js-ipfs-http-client/issues/1015)) ([a28b009](https://github.com/ipfs/js-ipfs-http-client/commit/a28b009))
+
+
+
+<a name="32.0.0"></a>
+# [32.0.0](https://github.com/ipfs/js-ipfs-http-client/compare/v31.1.0...v32.0.0) (2019-05-21)
+
+
+### Bug Fixes
+
+* handle empty array return value in dht.findProvs ([#1003](https://github.com/ipfs/js-ipfs-http-client/issues/1003)) ([15ab7c5](https://github.com/ipfs/js-ipfs-http-client/commit/15ab7c5))
+
+
+### Chores
+
+* update ipld formats ([#1010](https://github.com/ipfs/js-ipfs-http-client/issues/1010)) ([a423d7f](https://github.com/ipfs/js-ipfs-http-client/commit/a423d7f))
+
+
+### BREAKING CHANGES
+
+* The default string encoding for version 1 CIDs has changed to `base32`.
+
+IPLD formats have been updated to the latest versions. IPLD nodes returned by `ipfs.dag` and `ipfs.object` commands have significant breaking changes. If you are using these commands in your application you are likely to encounter the following changes to `dag-pb` nodes (the default node type that IPFS creates):
+
+* `DAGNode` properties have been renamed as follows:
+    * `data` => `Data`
+    * `links` => `Links`
+    * `size` => `size` (Note: no change)
+* `DAGLink` properties have been renamed as follows:
+    * `cid` => `Hash`
+    * `name` => `Name`
+    * `size` => `Tsize`
+
+See CHANGELOGs for each IPLD format for it's respective changes, you can read more about the [`dag-pb` changes in the CHANGELOG](https://github.com/ipld/js-ipld-dag-pb/blob/master)
+
+License: MIT
+Signed-off-by: Alan Shaw <alan.shaw@protocol.ai>
+
+
+
+<a name="31.1.0"></a>
+# [31.1.0](https://github.com/ipfs/js-ipfs-http-client/compare/v31.0.2...v31.1.0) (2019-05-16)
+
+
+### Features
+
+* add support for File DOM API to files-regular ([#986](https://github.com/ipfs/js-ipfs-http-client/issues/986)) ([7b49f7e](https://github.com/ipfs/js-ipfs-http-client/commit/7b49f7e))
+
+
+
+<a name="31.0.2"></a>
+## [31.0.2](https://github.com/ipfs/js-ipfs-http-client/compare/v31.0.1...v31.0.2) (2019-05-16)
+
+
+### Bug Fixes
+
+* error handling for refs/refs local ([#997](https://github.com/ipfs/js-ipfs-http-client/issues/997)) ([391351d](https://github.com/ipfs/js-ipfs-http-client/commit/391351d))
+
+
+
+<a name="31.0.1"></a>
+## [31.0.1](https://github.com/ipfs/js-ipfs-http-client/compare/v31.0.0...v31.0.1) (2019-05-15)
+
+
+### Bug Fixes
+
+* config set with number ([#998](https://github.com/ipfs/js-ipfs-http-client/issues/998)) ([4f21bef](https://github.com/ipfs/js-ipfs-http-client/commit/4f21bef)), closes [#881](https://github.com/ipfs/js-ipfs-http-client/issues/881)
+
+
+
+<a name="31.0.0"></a>
+# [31.0.0](https://github.com/ipfs/js-ipfs-http-client/compare/v30.1.4...v31.0.0) (2019-05-13)
+
+
+### Features
+
+* refs endpoint ([#978](https://github.com/ipfs/js-ipfs-http-client/issues/978)) ([a741e10](https://github.com/ipfs/js-ipfs-http-client/commit/a741e10))
+
+
+### BREAKING CHANGES
+
+* ipfs.refs now returns objects with camelCase properties not PascalCase properties. i.e. `{ ref, err }` not `{ Ref, Err }`
+
+
+
 <a name="30.1.4"></a>
 ## [30.1.4](https://github.com/ipfs/js-ipfs-http-client/compare/v30.1.3...v30.1.4) (2019-04-29)
 

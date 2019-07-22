@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="ipfs.io"><img width="650px" src="https://ipfs.io/ipfs/QmQJ68PFMDdAsgCZvA1UVzzn18asVcf7HVvCDgpjiSCAse" alt="IPFS http client lib logo" /></a>
+  <a href="https://ipfs.io"><img width="650px" src="https://ipfs.io/ipfs/QmQJ68PFMDdAsgCZvA1UVzzn18asVcf7HVvCDgpjiSCAse" alt="IPFS http client lib logo" /></a>
 </h1>
 
 <h3 align="center">The JavaScript HTTP client library for IPFS implementations.</h3>
@@ -203,6 +203,8 @@ const ipfs = ipfsClient({
   - [`ipfs.lsPullStream(ipfsPath)`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#lspullstream)
   - [`ipfs.lsReadableStream(ipfsPath)`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#lsreadablestream)
 - [MFS (mutable file system) specific](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#mutable-file-system)
+  
+  _Explore the Mutable File System through interactive coding challenges in our [ProtoSchool tutorial](https://proto.school/#/mutable-file-system/)._
   - [`ipfs.files.cp([from, to], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#filescp)
   - [`ipfs.files.flush([path], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#filesflush)
   - [`ipfs.files.ls([path], [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#filesls)
@@ -220,9 +222,19 @@ const ipfs = ipfsClient({
   - [`ipfs.block.put(block, [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/BLOCK.md#blockput)
   - [`ipfs.block.stat(cid, [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/BLOCK.md#blockstat)
 
+- [refs](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md)
+  - [`ipfs.refs(ipfsPath, [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refs)
+  - [`ipfs.refsReadableStream(ipfsPath, [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refsreadablestream)
+  - [`ipfs.refsPullStream(ipfsPath, [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refspullstream)
+  - [`ipfs.refs.local([callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refslocal)
+  - [`ipfs.refs.localReadableStream([callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refslocalreadablestream)
+  - [`ipfs.refs.localPullStream([callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/REFS.md#refslocalpullstream)
+
 #### Graph
 
 - [dag](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/DAG.md)
+  
+  _Explore the DAG API through interactive coding challenges in our [ProtoSchool tutorial](https://proto.school/#/basics)._
   - [`ipfs.dag.get(cid, [path], [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/DAG.md#dagget)
   - [`ipfs.dag.put(dagNode, [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/DAG.md#dagput)
   - [`ipfs.dag.tree(cid, [path], [options], [callback])`](https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/DAG.md#dagtree)
